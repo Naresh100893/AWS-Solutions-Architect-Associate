@@ -1,0 +1,25 @@
+
+# aws instance type list
+
+variable "aws-instance-type-list" {
+descrition = "chossing instance type among multiple"
+type = list(string)
+default = ["t3.micro","t3.small","t3.large"]
+}
+
+variable "aws-instance-map" {
+description =" mapping the instance type based on the env"
+type = map(string)
+default = {
+"dev" = "t3.micro"
+"qa" = "t3.small"
+"prod" = "t3.large"
+}
+
+
+# output latest generalized splat operators - returns the list
+
+output "latest_splat_instance_publicdns" {
+description = "generlaised latest splat operators"
+value = aws_instance.demo[*].public_ip
+}
